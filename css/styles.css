@@ -745,17 +745,98 @@ footer {
     font-size: 0.9rem;
 }
 
+/* Header Actions */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.menu-toggle {
+    display: none;
+    font-size: 1.5rem;
+    color: var(--primary-blue);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.menu-toggle:hover {
+    color: var(--primary-green);
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .header-container {
-        flex-direction: column;
-        gap: 15px;
+        flex-direction: row; /* Keep elements inline */
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap; /* Allow nav to wrap below */
+        gap: 0;
     }
 
+    .logo img {
+        height: 45px; /* Slightly smaller logo on mobile */
+    }
+
+    .menu-toggle {
+        display: block; /* Show hamburger icon */
+    }
+
+    /* Wrap .cta-btn and .menu-toggle together */
+    .header-actions {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+    
+    .cta-btn {
+        padding: 8px 18px;
+        font-size: 0.9rem;
+    }
+
+    /* Hide the navigation menu by default, show when active */
     .nav-menu {
+        display: none; 
         flex-direction: column;
-        gap: 15px;
-        text-align: center;
+        width: 100%;
+        text-align: right;
+        gap: 0;
+        margin-top: 15px;
+        background-color: #fcfcfc;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        border: 1px solid #eee;
+    }
+
+    .nav-menu.active {
+        display: flex; /* Show when toggle is active */
+    }
+
+    .nav-menu li {
+        width: 100%;
+        border-bottom: 1px solid #f0f0f0;
+    }
+
+    .nav-menu li:last-child {
+        border-bottom: none;
+    }
+
+    .nav-link {
+        display: block;
+        padding: 12px 15px;
+        width: 100%;
+    }
+
+    .nav-link::after {
+        display: none; /* Remove underline animation on mobile */
+    }
+
+    /* Other Mobile Adjustments */
+    .hero {
+        height: auto;
+        padding-top: 100px;
+        padding-bottom: 50px;
+        min-height: 60vh;
     }
 
     .hero-content h1 {
