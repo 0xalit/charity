@@ -142,7 +142,7 @@ header {
 
 /* Hero Section */
 .hero {
-    background: linear-gradient(rgba(2, 2, 161, 0.8), rgba(46, 135, 82, 0.8)), url('../assets/images/image2.jpg') center/cover no-repeat;
+    background: linear-gradient(rgba(2, 2, 161, 0.6), rgba(46, 135, 82, 0.6)), url('../assets/images/unnamed.jpg') center/cover no-repeat;
     height: 80vh;
     display: flex;
     align-items: center;
@@ -169,6 +169,8 @@ header {
 /* Chairman's Word */
 .chairman-section {
     background-color: var(--white);
+    padding-top: 40px;
+    /* Reduced from default 80px */
 }
 
 .chairman-content {
@@ -767,19 +769,23 @@ footer {
 /* Responsive */
 @media (max-width: 768px) {
     .header-container {
-        flex-direction: row; /* Keep elements inline */
+        flex-direction: row;
+        /* Keep elements inline */
         justify-content: space-between;
         align-items: center;
-        flex-wrap: wrap; /* Allow nav to wrap below */
+        flex-wrap: wrap;
+        /* Allow nav to wrap below */
         gap: 0;
     }
 
     .logo img {
-        height: 45px; /* Slightly smaller logo on mobile */
+        height: 45px;
+        /* Slightly smaller logo on mobile */
     }
 
     .menu-toggle {
-        display: block; /* Show hamburger icon */
+        display: block;
+        /* Show hamburger icon */
     }
 
     /* Wrap .cta-btn and .menu-toggle together */
@@ -788,7 +794,7 @@ footer {
         align-items: center;
         gap: 12px;
     }
-    
+
     .cta-btn {
         padding: 8px 18px;
         font-size: 0.9rem;
@@ -796,7 +802,7 @@ footer {
 
     /* Hide the navigation menu by default, show when active */
     .nav-menu {
-        display: none; 
+        display: none;
         flex-direction: column;
         width: 100%;
         text-align: right;
@@ -804,12 +810,13 @@ footer {
         margin-top: 15px;
         background-color: #fcfcfc;
         border-radius: 8px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
         border: 1px solid #eee;
     }
 
     .nav-menu.active {
-        display: flex; /* Show when toggle is active */
+        display: flex;
+        /* Show when toggle is active */
     }
 
     .nav-menu li {
@@ -828,7 +835,8 @@ footer {
     }
 
     .nav-link::after {
-        display: none; /* Remove underline animation on mobile */
+        display: none;
+        /* Remove underline animation on mobile */
     }
 
     /* Other Mobile Adjustments */
