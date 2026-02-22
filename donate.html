@@ -1,0 +1,1279 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تبرع الآن - جمعية عطاء للمبادرات المجتمعية</title>
+    <meta name="description" content="تبرع الآن لدعم مبادرات جمعية عطاء المجتمعية وساعد في بناء مجتمع أفضل">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap"
+        rel="stylesheet">
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ===== Donate Page Styles ===== */
+        .donate-hero {
+            background: linear-gradient(135deg, rgba(2, 2, 161, 0.9), rgba(46, 135, 82, 0.85)),
+                url('assets/images/image2.jpg') center/cover no-repeat;
+            padding: 160px 0 80px;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .donate-hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .donate-hero p {
+            font-size: 1.2rem;
+            max-width: 650px;
+            margin: 0 auto;
+            opacity: 0.92;
+        }
+
+        /* ===== Impact Stats Bar ===== */
+        .impact-bar {
+            background: var(--primary-blue);
+            padding: 30px 0;
+        }
+
+        .impact-stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
+
+        .impact-stat {
+            text-align: center;
+            color: var(--white);
+        }
+
+        .impact-stat .number {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #7fff7f;
+            display: block;
+        }
+
+        .impact-stat .label {
+            font-size: 0.95rem;
+            opacity: 0.85;
+        }
+
+        /* ===== Donation Sections Layout ===== */
+        .donate-main {
+            padding: 70px 0;
+            background: var(--bg-light);
+        }
+
+        .donate-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        /* ===== Donation Form Card ===== */
+        .donate-card {
+            background: var(--white);
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.09);
+            overflow: hidden;
+        }
+
+        .donate-card-header {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-green));
+            padding: 25px 30px;
+            color: var(--white);
+        }
+
+        .donate-card-header h2 {
+            font-size: 1.6rem;
+            margin-bottom: 5px;
+        }
+
+        .donate-card-header p {
+            font-size: 0.95rem;
+            opacity: 0.88;
+        }
+
+        .donate-card-body {
+            padding: 30px;
+        }
+
+        /* Amount Presets */
+        .amount-label {
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 12px;
+            display: block;
+            font-size: 1rem;
+        }
+
+        .amount-presets {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .amount-btn {
+            background: #f0f4ff;
+            border: 2px solid #dde4f5;
+            border-radius: 10px;
+            padding: 14px 10px;
+            font-family: var(--font-main);
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .amount-btn:hover,
+        .amount-btn.active {
+            background: var(--primary-blue);
+            border-color: var(--primary-blue);
+            color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(2, 2, 161, 0.2);
+        }
+
+        .amount-btn .sar {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 400;
+            opacity: 0.8;
+            margin-top: 3px;
+        }
+
+        /* Custom Amount */
+        .custom-amount-wrapper {
+            position: relative;
+            margin-bottom: 22px;
+        }
+
+        .custom-amount-wrapper input {
+            width: 100%;
+            padding: 13px 20px 13px 60px;
+            border: 2px solid #dde4f5;
+            border-radius: 10px;
+            font-family: var(--font-main);
+            font-size: 1.1rem;
+            color: var(--text-color);
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .custom-amount-wrapper input:focus {
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(2, 2, 161, 0.08);
+        }
+
+        .custom-amount-wrapper .currency-tag {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary-green);
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        /* Form Fields */
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: #444;
+            margin-bottom: 7px;
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e8eaf0;
+            border-radius: 10px;
+            font-family: var(--font-main);
+            font-size: 1rem;
+            color: var(--text-color);
+            outline: none;
+            transition: var(--transition);
+            background: #fafbff;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(2, 2, 161, 0.08);
+            background: var(--white);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        /* Donate type selector */
+        .donate-type {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 22px;
+        }
+
+        .type-btn {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #dde4f5;
+            border-radius: 10px;
+            font-family: var(--font-main);
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: center;
+            transition: var(--transition);
+            background: #f0f4ff;
+            color: var(--primary-blue);
+        }
+
+        .type-btn.active,
+        .type-btn:hover {
+            background: var(--primary-green);
+            border-color: var(--primary-green);
+            color: var(--white);
+        }
+
+        .type-btn i {
+            display: block;
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+
+        /* Submit Button */
+        .donate-submit-btn {
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary-green), var(--light-green));
+            color: var(--white);
+            border: none;
+            padding: 16px;
+            border-radius: 50px;
+            font-family: var(--font-main);
+            font-size: 1.15rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 10px;
+            letter-spacing: 0.5px;
+        }
+
+        .donate-submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(46, 135, 82, 0.35);
+        }
+
+        .donate-submit-btn i {
+            margin-right: 8px;
+        }
+
+        /* ===== Credit Card Section ===== */
+        .cc-section-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            color: var(--primary-blue);
+            font-size: 1rem;
+            margin: 22px 0 16px;
+            padding-top: 18px;
+            border-top: 1px dashed #dde4f5;
+        }
+
+        .cc-section-label i {
+            font-size: 1.1rem;
+            color: var(--primary-green);
+        }
+
+        /* Card Preview */
+        .card-preview-wrapper {
+            perspective: 1000px;
+            margin-bottom: 22px;
+        }
+
+        .card-preview {
+            width: 100%;
+            max-width: 340px;
+            height: 195px;
+            margin: 0 auto;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.6s ease;
+        }
+
+        .card-preview.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .card-face {
+            position: absolute;
+            inset: 0;
+            border-radius: 16px;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            padding: 22px 25px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-front {
+            background: linear-gradient(135deg, #0202a1 0%, #1a1a6e 50%, #2e8752 100%);
+            box-shadow: 0 15px 40px rgba(2, 2, 161, 0.35);
+        }
+
+        .card-front::before {
+            content: '';
+            position: absolute;
+            top: -30px;
+            right: -30px;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .card-front::after {
+            content: '';
+            position: absolute;
+            bottom: -60px;
+            left: -20px;
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .card-back {
+            background: linear-gradient(135deg, #1a1a2e, #0d0d3d);
+            transform: rotateY(180deg);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
+        }
+
+        .card-logo-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-logo-row .card-brand {
+            font-size: 1.5rem;
+        }
+
+        .card-chip {
+            width: 42px;
+            height: 32px;
+            background: linear-gradient(135deg, #d4af37, #f5e468);
+            border-radius: 6px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-chip::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: rgba(0, 0, 0, 0.15);
+        }
+
+        .card-chip::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: rgba(0, 0, 0, 0.15);
+        }
+
+        .card-number-display {
+            font-size: 1.25rem;
+            letter-spacing: 3px;
+            font-family: 'Courier New', monospace;
+            direction: ltr;
+            text-align: center;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-bottom-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .card-holder-display,
+        .card-expiry-display {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-field-tiny {
+            font-size: 0.6rem;
+            opacity: 0.7;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 3px;
+        }
+
+        .card-field-val {
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Card Back */
+        .card-stripe {
+            height: 40px;
+            background: #111;
+            margin: 20px -25px 15px;
+        }
+
+        .card-cvv-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0 5px;
+        }
+
+        .card-cvv-strip {
+            flex: 1;
+            height: 36px;
+            background: white;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            padding: 0 12px;
+            direction: ltr;
+        }
+
+        .card-cvv-strip span {
+            color: #333;
+            font-family: 'Courier New', monospace;
+            font-size: 1rem;
+            letter-spacing: 4px;
+        }
+
+        .card-cvv-label {
+            font-size: 0.7rem;
+            opacity: 0.7;
+        }
+
+        /* Input with icon */
+        .input-icon-wrapper {
+            position: relative;
+        }
+
+        .input-icon-wrapper input {
+            width: 100%;
+            padding: 12px 16px 12px 44px;
+            border: 2px solid #e8eaf0;
+            border-radius: 10px;
+            font-family: var(--font-main);
+            font-size: 1rem;
+            color: var(--text-color);
+            outline: none;
+            transition: var(--transition);
+            background: #fafbff;
+        }
+
+        .input-icon-wrapper input:focus {
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(2, 2, 161, 0.08);
+            background: var(--white);
+        }
+
+        .input-icon-wrapper .field-icon {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #aab;
+            font-size: 1rem;
+            pointer-events: none;
+        }
+
+        /* Accepted cards row */
+        .accepted-cards {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 14px;
+            flex-wrap: wrap;
+        }
+
+        .accepted-cards span {
+            font-size: 0.8rem;
+            color: #999;
+        }
+
+        .card-badge {
+            background: #f4f4f4;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 3px 10px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #444;
+            letter-spacing: 0.5px;
+        }
+
+        .card-badge.visa {
+            color: #1a1f71;
+        }
+
+        .card-badge.mc {
+            color: #eb001b;
+        }
+
+        .card-badge.mada {
+            color: var(--primary-green);
+        }
+
+        .card-badge.amex {
+            color: #007bc1;
+        }
+
+        /* Secure badge */
+        .secure-badge {
+            text-align: center;
+            margin-top: 14px;
+            font-size: 0.85rem;
+            color: #888;
+        }
+
+        .secure-badge i {
+            color: var(--primary-green);
+            margin-left: 5px;
+        }
+
+        /* ===== Bank Transfer Card ===== */
+        .bank-card {
+            background: var(--white);
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.09);
+            overflow: hidden;
+        }
+
+        .bank-card-header {
+            background: linear-gradient(135deg, #1a1a2e, var(--primary-blue));
+            padding: 25px 30px;
+            color: var(--white);
+        }
+
+        .bank-card-header h2 {
+            font-size: 1.6rem;
+            margin-bottom: 5px;
+        }
+
+        .bank-card-header p {
+            font-size: 0.95rem;
+            opacity: 0.88;
+        }
+
+        .bank-card-body {
+            padding: 30px;
+        }
+
+        .bank-info-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 18px;
+            border-radius: 10px;
+            background: #f7f9ff;
+            margin-bottom: 12px;
+            border: 1px solid #eaeef8;
+            transition: var(--transition);
+        }
+
+        .bank-info-item:hover {
+            background: #eef2ff;
+            border-color: #c5cdf0;
+        }
+
+        .bank-info-label {
+            font-size: 0.85rem;
+            color: #888;
+            margin-bottom: 4px;
+        }
+
+        .bank-info-value {
+            font-weight: 700;
+            color: var(--primary-blue);
+            font-size: 1rem;
+            direction: ltr;
+            text-align: right;
+        }
+
+        .copy-btn {
+            background: none;
+            border: 1px solid #dde4f5;
+            border-radius: 8px;
+            padding: 6px 12px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            color: #666;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-family: var(--font-main);
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .copy-btn:hover {
+            background: var(--primary-blue);
+            border-color: var(--primary-blue);
+            color: var(--white);
+        }
+
+        .bank-note {
+            background: linear-gradient(135deg, #fff8e1, #fffde7);
+            border: 1px solid #ffe082;
+            border-radius: 10px;
+            padding: 18px;
+            margin-top: 20px;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .bank-note i {
+            color: #f9a825;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .bank-note p {
+            font-size: 0.9rem;
+            color: #5f4e00;
+            line-height: 1.7;
+        }
+
+        /* ===== Donation Programs ===== */
+        .programs-section {
+            padding: 70px 0;
+            background: var(--white);
+        }
+
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .program-card {
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.07);
+            transition: var(--transition);
+            border: 1px solid #eee;
+        }
+
+        .program-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        }
+
+        .program-icon-area {
+            padding: 35px 20px;
+            text-align: center;
+        }
+
+        .program-card:nth-child(1) .program-icon-area {
+            background: linear-gradient(135deg, #0202a1, #3535c7);
+        }
+
+        .program-card:nth-child(2) .program-icon-area {
+            background: linear-gradient(135deg, #2e8752, #3daf6d);
+        }
+
+        .program-card:nth-child(3) .program-icon-area {
+            background: linear-gradient(135deg, #7b2d8b, #a541b8);
+        }
+
+        .program-card:nth-child(4) .program-icon-area {
+            background: linear-gradient(135deg, #c0392b, #e74c3c);
+        }
+
+        .program-icon-area i {
+            font-size: 2.5rem;
+            color: var(--white);
+        }
+
+        .program-body {
+            padding: 22px;
+            background: var(--white);
+        }
+
+        .program-body h3 {
+            color: var(--primary-blue);
+            font-size: 1.15rem;
+            margin-bottom: 8px;
+        }
+
+        .program-body p {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        .program-donate-btn {
+            display: inline-block;
+            background: #f0f4ff;
+            color: var(--primary-blue);
+            border: 2px solid #dde4f5;
+            border-radius: 50px;
+            padding: 8px 20px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .program-donate-btn:hover {
+            background: var(--primary-blue);
+            color: var(--white);
+            border-color: var(--primary-blue);
+        }
+
+        /* ===== Thank You / Success State ===== */
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 40px 30px;
+        }
+
+        .success-message .success-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-green), var(--light-green));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+
+        .success-message .success-icon i {
+            font-size: 2.5rem;
+            color: var(--white);
+        }
+
+        .success-message h3 {
+            color: var(--primary-blue);
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+        }
+
+        .success-message p {
+            color: #666;
+            font-size: 1rem;
+        }
+
+        /* ===== Responsive ===== */
+        @media (max-width: 900px) {
+            .donate-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .donate-hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .impact-stats {
+                gap: 30px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .amount-presets {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 500px) {
+            .amount-presets {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .donate-type {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <a href="index.html"><img src="assets/images/logoToUse.png" alt="شعار الجمعية"></a>
+            </div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">الرئيسية</a></li>
+                    <li><a href="about.html" class="nav-link">عن الجمعية</a></li>
+                    <li><a href="regulations.html" class="nav-link">اللوائح والأنظمة</a></li>
+                    <li><a href="index.html#contact" class="nav-link">تواصل معنا</a></li>
+                </ul>
+            </nav>
+            <a href="donate.html" class="cta-btn">تـبـرع الآن</a>
+        </div>
+    </header>
+
+    <!-- Donate Hero -->
+    <section class="donate-hero">
+        <div class="container">
+            <h1><i class="fas fa-hand-holding-heart" style="margin-left: 15px; color: #7fff7f;"></i>تبرع الآن</h1>
+            <p>مساهمتك تصنع فارقاً حقيقياً في حياة أبناء مجتمعنا. كل ريال يُقدَّم يُحوَّل إلى برامج هادفة تدعم التنمية
+                والإبداع.</p>
+        </div>
+    </section>
+
+    <!-- Impact Stats Bar -->
+    <div class="impact-bar">
+        <div class="container">
+            <div class="impact-stats">
+                <div class="impact-stat">
+                    <span class="number">+١٠٠٠</span>
+                    <span class="label">مستفيد من برامجنا</span>
+                </div>
+                <div class="impact-stat">
+                    <span class="number">+٢٠</span>
+                    <span class="label">مبادرة منجزة</span>
+                </div>
+                <div class="impact-stat">
+                    <span class="number">٥</span>
+                    <span class="label">سنوات من العطاء</span>
+                </div>
+                <div class="impact-stat">
+                    <span class="number">١٠٠%</span>
+                    <span class="label">شفافية في صرف التبرعات</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Donation Section -->
+    <section class="donate-main">
+        <div class="container">
+            <div class="donate-layout">
+
+                <!-- === Donation Form === -->
+                <div class="donate-card">
+                    <div class="donate-card-header">
+                        <h2><i class="fas fa-credit-card" style="margin-left: 10px;"></i>تبرع إلكتروني</h2>
+                        <p>أرسل تبرعك بسهولة وأمان عبر النموذج أدناه</p>
+                    </div>
+                    <div class="donate-card-body" id="step1-body">
+
+                        <!-- Donation Type -->
+                        <span class="amount-label">نوع التبرع</span>
+                        <div class="donate-type">
+                            <button class="type-btn active" id="type-once" onclick="selectType(this)">
+                                <i class="fas fa-hand-holding-usd"></i>
+                                تبرع لمرة واحدة
+                            </button>
+                            <button class="type-btn" id="type-monthly" onclick="selectType(this)">
+                                <i class="fas fa-sync-alt"></i>
+                                تبرع شهري
+                            </button>
+                        </div>
+
+                        <!-- Amount Presets -->
+                        <span class="amount-label">اختر المبلغ</span>
+                        <div class="amount-presets">
+                            <button class="amount-btn" onclick="selectAmount(this, 50)">
+                                ٥٠
+                                <span class="sar">ريال سعودي</span>
+                            </button>
+                            <button class="amount-btn" onclick="selectAmount(this, 100)">
+                                ١٠٠
+                                <span class="sar">ريال سعودي</span>
+                            </button>
+                            <button class="amount-btn active" onclick="selectAmount(this, 250)">
+                                ٢٥٠
+                                <span class="sar">ريال سعودي</span>
+                            </button>
+                            <button class="amount-btn" onclick="selectAmount(this, 500)">
+                                ٥٠٠
+                                <span class="sar">ريال سعودي</span>
+                            </button>
+                            <button class="amount-btn" onclick="selectAmount(this, 1000)">
+                                ١٠٠٠
+                                <span class="sar">ريال سعودي</span>
+                            </button>
+                            <button class="amount-btn" onclick="selectAmount(this, null)">
+                                مبلغ آخر
+                                <span class="sar">حدد المبلغ</span>
+                            </button>
+                        </div>
+
+                        <!-- Custom Amount Input -->
+                        <div class="custom-amount-wrapper" id="custom-amount-wrapper" style="display: none;">
+                            <input type="number" id="custom-amount" placeholder="أدخل المبلغ" min="1">
+                            <span class="currency-tag">ر.س</span>
+                        </div>
+
+                        <!-- Donor Info -->
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="donor-name">الاسم الكامل</label>
+                                <input type="text" id="donor-name" placeholder="اسمك الكريم">
+                            </div>
+                            <div class="form-group">
+                                <label for="donor-phone">رقم الجوال</label>
+                                <input type="tel" id="donor-phone" placeholder="05xxxxxxxx">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="donor-email">البريد الإلكتروني (اختياري)</label>
+                            <input type="email" id="donor-email" placeholder="example@email.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="donate-program">تخصيص التبرع (اختياري)</label>
+                            <select id="donate-program">
+                                <option value="">— حيث تراه الجمعية مناسباً —</option>
+                                <option value="training">برامج التدريب والتطوير</option>
+                                <option value="awareness">برامج التوعية المجتمعية</option>
+                                <option value="youth">دعم برامج الشباب</option>
+                                <option value="counseling">الاستشارات الاجتماعية</option>
+                            </select>
+                        </div>
+
+                        <button class="donate-submit-btn" onclick="submitDonation()">
+                            <i class="fas fa-heart"></i>
+                            تبرع الآن
+                        </button>
+                        <div class="secure-badge" style="margin-top:12px;">
+                            <i class="fas fa-shield-alt"></i>
+                            بياناتك محمية وآمنة | جمعية مسجلة برقم 05292
+                        </div>
+                    </div>
+
+
+                    <!-- Success Message (hidden initially) -->
+                    <div class="success-message" id="success-message">
+                        <div class="success-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <h3>شكراً لك على تبرعك الكريم!</h3>
+                        <p>تم استلام طلبك بنجاح. سوف يتواصل معك فريقنا قريباً لإتمام عملية التبرع.</p>
+                    </div>
+                </div>
+
+                <!-- === Bank Transfer Info === -->
+                <div class="bank-card">
+                    <div class="bank-card-header">
+                        <h2><i class="fas fa-university" style="margin-left: 10px;"></i>التحويل البنكي</h2>
+                        <p>يمكنك التبرع عبر التحويل المباشر إلى حساب الجمعية</p>
+                    </div>
+                    <div class="bank-card-body">
+
+                        <div class="bank-info-item">
+                            <div>
+                                <div class="bank-info-label">اسم البنك</div>
+                                <div class="bank-info-value">البنك الأهلي السعودي (SNB)</div>
+                            </div>
+                        </div>
+
+                        <div class="bank-info-item">
+                            <div>
+                                <div class="bank-info-label">اسم الحساب</div>
+                                <div class="bank-info-value">جمعية عطاء للمبادرات المجتمعية</div>
+                            </div>
+                        </div>
+
+                        <div class="bank-info-item">
+                            <div>
+                                <div class="bank-info-label">رقم الحساب (IBAN)</div>
+                                <div class="bank-info-value" id="iban-value">SA00 0000 0000 0000 0000 0000</div>
+                            </div>
+                            <button class="copy-btn" onclick="copyText('iban-value', this)">
+                                <i class="fas fa-copy"></i> نسخ
+                            </button>
+                        </div>
+
+                        <div class="bank-info-item">
+                            <div>
+                                <div class="bank-info-label">رقم السجل الخيري</div>
+                                <div class="bank-info-value">05292</div>
+                            </div>
+                        </div>
+
+                        <div class="bank-note">
+                            <i class="fas fa-info-circle"></i>
+                            <p>
+                                بعد إتمام التحويل، يرجى إرسال صورة من إيصال التحويل عبر البريد الإلكتروني
+                                <strong>info@ataasociety.org</strong>
+                                أو واتساب على الرقم <strong>0554829996</strong>، مع ذكر الاسم ورقم المرجع.
+                            </p>
+                        </div>
+
+                        <!-- Social Share -->
+                        <div
+                            style="margin-top: 30px; text-align: center; border-top: 1px solid #eee; padding-top: 25px;">
+                            <p style="color: #888; margin-bottom: 15px; font-size: 0.9rem;">شارك رابط التبرع مع أصدقائك
+                            </p>
+                            <a href="https://www.facebook.com/AtaaSociety/" target="_blank"
+                                style="display: inline-flex; align-items: center; gap: 8px; background: #1877f2; color: white; padding: 10px 22px; border-radius: 50px; font-size: 0.95rem; font-weight: 600; transition: var(--transition);"
+                                onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+                                <i class="fab fa-facebook-f"></i> شارك على فيسبوك
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Donation Programs -->
+    <section class="programs-section">
+        <div class="container">
+            <h2 class="section-title">برامج التبرع</h2>
+            <p style="text-align: center; color: #666; margin-top: -30px; margin-bottom: 40px;">اختر البرنامج الذي تود
+                دعمه</p>
+            <div class="programs-grid">
+                <div class="program-card">
+                    <div class="program-icon-area">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="program-body">
+                        <h3>برامج التدريب والتطوير</h3>
+                        <p>تمويل ورش العمل والدورات التدريبية التي ترفع من مهارات أبناء المجتمع.</p>
+                        <button class="program-donate-btn" onclick="scrollToForm('training')">تبرع لهذا
+                            البرنامج</button>
+                    </div>
+                </div>
+                <div class="program-card">
+                    <div class="program-icon-area">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="program-body">
+                        <h3>برامج التوعية المجتمعية</h3>
+                        <p>دعم حملات التوعية وتعزيز الوعي في قضايا التنمية الشخصية والاجتماعية.</p>
+                        <button class="program-donate-btn" onclick="scrollToForm('awareness')">تبرع لهذا
+                            البرنامج</button>
+                    </div>
+                </div>
+                <div class="program-card">
+                    <div class="program-icon-area">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="program-body">
+                        <h3>دعم برامج الشباب</h3>
+                        <p>تمكين الشباب واكتشاف مواهبهم وبناء قدراتهم المعرفية والمهارية.</p>
+                        <button class="program-donate-btn" onclick="scrollToForm('youth')">تبرع لهذا البرنامج</button>
+                    </div>
+                </div>
+                <div class="program-card">
+                    <div class="program-icon-area">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <div class="program-body">
+                        <h3>الاستشارات الاجتماعية</h3>
+                        <p>تقديم الاستشارات الشخصية والمهنية والسلوكية لمستفيدي الجمعية.</p>
+                        <button class="program-donate-btn" onclick="scrollToForm('counseling')">تبرع لهذا
+                            البرنامج</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <!-- Right Column: Logo & Description -->
+                <div class="footer-logo">
+                    <img src="assets/images/logoToUse.png" alt="Logo">
+                    <p>جمعية أهلية خيرية مسجلة في وزارة الموارد البشرية والتنمية الاجتماعية برقم 05292، نعمل على خدمة
+                        أبناء مجتمعنا الكريم من خلال برامج ومبادرات هادفة تحقق التنمية المستدامة وتعكس قيم ديننا الحنيف
+                        ومبادئ مجتمعنا السعودي</p>
+                </div>
+
+                <!-- Center Column: Contact Info -->
+                <div class="footer-contact">
+                    <h4>للتواصل</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> المنطقه الشرقية - المملكة العربية السعودية</p>
+                    <p><i class="fas fa-envelope"></i> info@ataasociety.org</p>
+                    <p><i class="fas fa-phone"></i> 0554829996</p>
+                    <p><i class="fas fa-phone"></i> 0532189994</p>
+                </div>
+
+                <!-- Left Column: Links -->
+                <div class="footer-links">
+                    <h4>روابط سريعة</h4>
+                    <ul>
+                        <li><a href="index.html#vision">من نحن</a></li>
+                        <li><a href="about.html">عن الجمعية</a></li>
+                        <li><a href="regulations.html">اللوائح والانظمة</a></li>
+                        <li><a href="donate.html">تبرع</a></li>
+                    </ul>
+                    <div class="footer-social">
+                        <a href="https://www.facebook.com/AtaaSociety/" target="_blank"><i
+                                class="fab fa-facebook-f"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>سياسة الخصوصية | الأحكام والشروط</p>
+                <p>جمعية عطاء للمبادرات المجتمعية 2026 © جميع الحقوق محفوظة &nbsp;|&nbsp; تم التطوير عن طريق <strong>CG
+                        Agency</strong></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Amount selector
+        const customWrapper = document.getElementById('custom-amount-wrapper');
+
+        function selectAmount(btn, amount) {
+            document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            if (amount === null) {
+                customWrapper.style.display = 'block';
+                document.getElementById('custom-amount').focus();
+            } else {
+                customWrapper.style.display = 'none';
+            }
+        }
+
+        // Type selector
+        function selectType(btn) {
+            document.querySelectorAll('.type-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        }
+
+        // Scroll to form and pre-select program
+        function scrollToForm(program) {
+            document.getElementById('donate-program').value = program;
+            document.querySelector('.donate-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // Copy to clipboard
+        function copyText(elementId, btn) {
+            const text = document.getElementById(elementId).innerText;
+            navigator.clipboard.writeText(text.replace(/\s/g, '')).then(() => {
+                const originalHTML = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check"></i> تم النسخ';
+                btn.style.background = 'var(--primary-green)';
+                btn.style.color = 'white';
+                setTimeout(() => {
+                    btn.innerHTML = originalHTML;
+                    btn.style.background = '';
+                    btn.style.color = '';
+                }, 2000);
+            });
+        }
+
+        // ===== Card Preview Logic =====
+        function flipCard(toBack) {
+            document.getElementById('card-preview').classList.toggle('flipped', toBack);
+        }
+
+        function formatCardNumber(input) {
+            let val = input.value.replace(/\D/g, '').substring(0, 16);
+            let formatted = val.match(/.{1,4}/g)?.join(' ') || '';
+            input.value = formatted;
+            // Update preview
+            const display = val.padEnd(16, '•').match(/.{1,4}/g).join(' ');
+            document.getElementById('card-number-display').textContent = display;
+            // Detect brand
+            const brand = detectBrand(val);
+            const brandEl = document.getElementById('card-brand-display');
+            if (brand === 'visa') brandEl.innerHTML = '<span style="font-weight:900;letter-spacing:1px;font-size:1.1rem;">VISA</span>';
+            else if (brand === 'mc') brandEl.innerHTML = '<span style="font-size:1.4rem;">●<span style="margin-right:-6px;opacity:0.7;">●</span></span>';
+            else if (brand === 'mada') brandEl.innerHTML = '<span style="font-weight:800;font-size:0.9rem;">mada</span>';
+            else if (brand === 'amex') brandEl.innerHTML = '<span style="font-weight:800;font-size:0.85rem;">AMEX</span>';
+            else brandEl.innerHTML = '<i class="fas fa-credit-card" style="opacity:0.5;"></i>';
+        }
+
+        function detectBrand(num) {
+            if (/^4/.test(num)) return 'visa';
+            if (/^5[1-5]/.test(num)) return 'mc';
+            if (/^3[47]/.test(num)) return 'amex';
+            if (/^(588845|440647|440795|446404|440393|417633|468540|468541|468542|468543|968208|457997|636120)/.test(num)) return 'mada';
+            return '';
+        }
+
+        function updateCardName(input) {
+            const val = input.value || 'الاسم الكامل';
+            document.getElementById('card-name-display').textContent = val.toUpperCase();
+        }
+
+        function formatExpiry(input) {
+            let val = input.value.replace(/\D/g, '').substring(0, 4);
+            if (val.length >= 3) val = val.substring(0, 2) + ' / ' + val.substring(2);
+            input.value = val;
+            document.getElementById('card-expiry-display').textContent = val || 'MM / YY';
+        }
+
+        function updateCVV(input) {
+            const val = input.value;
+            document.getElementById('card-cvv-display').textContent = val ? '•'.repeat(val.length) : '•••';
+        }
+
+        // Submit handler
+        function submitDonation() {
+            const name = document.getElementById('donor-name').value.trim();
+            const phone = document.getElementById('donor-phone').value.trim();
+            if (!name) {
+                document.getElementById('donor-name').focus();
+                alert('يرجى إدخال الاسم الكامل.');
+                return;
+            }
+            if (!phone) {
+                document.getElementById('donor-phone').focus();
+                alert('يرجى إدخال رقم الجوال.');
+                return;
+            }
+            document.getElementById('step1-body').style.display = 'none';
+            const successMsg = document.getElementById('success-message');
+            successMsg.style.display = 'block';
+            successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    </script>
+</body>
+
+</html>

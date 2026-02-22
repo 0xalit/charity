@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اللوائح والأنظمة - الجمعية الخيرية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .regulations-page {
+            padding: 60px 0 80px;
+            background: #f8f9fc;
+        }
+
+        .regulations-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .regulations-header h2 {
+            color: var(--primary-blue);
+            font-size: 2rem;
+            margin-bottom: 12px;
+        }
+
+        .regulations-header p {
+            color: #666;
+            font-size: 1.05rem;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* Inline PDF viewer sections */
+        .pdf-viewer-block {
+            background: #fff;
+            border-radius: 14px;
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.07);
+            border: 1px solid #e5e9f0;
+            margin-bottom: 40px;
+            overflow: hidden;
+            transition: box-shadow 0.3s;
+        }
+
+        .pdf-viewer-block:hover {
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
+        }
+
+        .pdf-viewer-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 28px;
+            border-bottom: 1px solid #eef0f5;
+            background: linear-gradient(135deg, #f4f7ff, #ffffff);
+        }
+
+        .pdf-viewer-title {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .pdf-icon {
+            width: 46px;
+            height: 46px;
+            background: linear-gradient(135deg, var(--primary-blue), #4a4aba);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .pdf-viewer-title h3 {
+            color: var(--primary-blue);
+            font-size: 1.2rem;
+            margin: 0;
+        }
+
+        .pdf-viewer-title p {
+            color: #888;
+            font-size: 0.85rem;
+            margin: 4px 0 0;
+        }
+
+        .pdf-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .pdf-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 9px 20px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-family: 'Tajawal', sans-serif;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .pdf-btn-primary {
+            background: var(--primary-blue);
+            color: white;
+        }
+
+        .pdf-btn-primary:hover {
+            background: #0101cc;
+            transform: translateY(-2px);
+        }
+
+        .pdf-btn-secondary {
+            background: #f0f0f0;
+            color: var(--primary-blue);
+            border: 1px solid #ddd;
+        }
+
+        .pdf-btn-secondary:hover {
+            background: #e3eaff;
+            transform: translateY(-2px);
+        }
+
+        .pdf-embed-wrapper {
+            width: 100%;
+            height: 700px;
+            background: #f0f0f0;
+        }
+
+        .pdf-embed-wrapper iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+        /* Large PDF card */
+        .pdf-card-large {
+            background: white;
+            border-radius: 14px;
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.07);
+            border: 1px solid #e5e9f0;
+            padding: 35px 40px;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 40px;
+            transition: box-shadow 0.3s;
+        }
+
+        .pdf-card-large:hover {
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
+        }
+
+        .pdf-card-icon {
+            width: 80px;
+            height: 100px;
+            background: linear-gradient(160deg, var(--primary-blue) 60%, #4a4aba);
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            flex-shrink: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pdf-card-icon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 22px 22px 0;
+            border-color: transparent #fff3 transparent transparent;
+        }
+
+        .pdf-card-icon i {
+            font-size: 2rem;
+            margin-bottom: 6px;
+        }
+
+        .pdf-card-icon span {
+            font-size: 0.7rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .pdf-card-info {
+            flex: 1;
+        }
+
+        .pdf-card-info h3 {
+            color: var(--primary-blue);
+            font-size: 1.4rem;
+            margin: 0 0 8px;
+        }
+
+        .pdf-card-info p {
+            color: #777;
+            font-size: 0.95rem;
+            margin: 0 0 20px;
+            line-height: 1.6;
+        }
+
+        .pdf-card-meta {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .pdf-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.85rem;
+            color: #888;
+        }
+
+        .pdf-meta-item i {
+            color: var(--primary-blue);
+        }
+
+        @media (max-width: 768px) {
+            .pdf-viewer-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .pdf-card-large {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 25px;
+            }
+
+            .pdf-embed-wrapper {
+                height: 500px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <a href="index.html"><img src="assets/images/logoToUse.png" alt="شعار الجمعية"></a>
+            </div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">الرئيسية</a></li>
+                    <li><a href="index.html#chairman" class="nav-link">كلمة رئيس مجلس الادارة</a></li>
+                    <li><a href="index.html#vision" class="nav-link">عن الجمعية</a></li>
+                    <li><a href="index.html#goals" class="nav-link">أهدافنا</a></li>
+                    <li><a href="index.html#contact" class="nav-link">تواصل معنا</a></li>
+                </ul>
+            </nav>
+            <a href="donate.html" class="cta-btn">تـبـرع الآن</a>
+        </div>
+    </header>
+
+    <!-- Page Banner -->
+    <section
+        style="background: linear-gradient(135deg, var(--primary-blue), #0101cc); color: white; padding: 120px 0 60px; text-align: center;">
+        <div class="container">
+            <h1 style="font-size: 2.5rem; margin-bottom: 12px;">اللوائح والأنظمة</h1>
+            <p style="opacity: 0.85; font-size: 1.05rem;">الوثائق التأسيسية والأنظمة الرسمية لجمعية عطاء للمبادرات
+                المجتمعية</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="regulations-page">
+        <div class="container">
+
+            <!-- ───── شهادة التسجيل ───── -->
+            <div class="pdf-viewer-block">
+                <div class="pdf-viewer-header">
+                    <div class="pdf-viewer-title">
+                        <div class="pdf-icon"><i class="fas fa-certificate"></i></div>
+                        <div>
+                            <h3>شهادة التسجيل</h3>
+                            <p>وثيقة تسجيل الجمعية الرسمية</p>
+                        </div>
+                    </div>
+                    <div class="pdf-actions">
+                        <a href="assets/docs/شهادة التسجيل.pdf" target="_blank" class="pdf-btn pdf-btn-secondary">
+                            <i class="fas fa-external-link-alt"></i> فتح في تبويب جديد
+                        </a>
+                        <a href="assets/docs/شهادة التسجيل.pdf" download class="pdf-btn pdf-btn-primary">
+                            <i class="fas fa-download"></i> تحميل
+                        </a>
+                    </div>
+                </div>
+                <div class="pdf-embed-wrapper">
+                    <iframe src="assets/docs/شهادة التسجيل.pdf" title="شهادة التسجيل"></iframe>
+                </div>
+            </div>
+
+            <!-- ───── قرار التأسيس ───── -->
+            <div class="pdf-viewer-block">
+                <div class="pdf-viewer-header">
+                    <div class="pdf-viewer-title">
+                        <div class="pdf-icon"
+                            style="background: linear-gradient(135deg, var(--primary-green), #1a6e3f);"><i
+                                class="fas fa-stamp"></i></div>
+                        <div>
+                            <h3>قرار التأسيس</h3>
+                            <p>القرار الرسمي بتأسيس الجمعية</p>
+                        </div>
+                    </div>
+                    <div class="pdf-actions">
+                        <a href="assets/docs/قرار التأسيس.pdf" target="_blank" class="pdf-btn pdf-btn-secondary">
+                            <i class="fas fa-external-link-alt"></i> فتح في تبويب جديد
+                        </a>
+                        <a href="assets/docs/قرار التأسيس.pdf" download class="pdf-btn pdf-btn-primary">
+                            <i class="fas fa-download"></i> تحميل
+                        </a>
+                    </div>
+                </div>
+                <div class="pdf-embed-wrapper">
+                    <iframe src="assets/docs/قرار التأسيس.pdf" title="قرار التأسيس"></iframe>
+                </div>
+            </div>
+
+            <!-- ───── اللائحة الاساسية (large PDF, card only) ───── -->
+            <div class="pdf-card-large">
+                <div class="pdf-card-icon">
+                    <i class="fas fa-file-pdf"></i>
+                    <span>PDF</span>
+                </div>
+                <div class="pdf-card-info">
+                    <h3>اللائحة الأساسية للجمعية</h3>
+                    <p>اللائحة الأساسية الشاملة التي تنظم عمل الجمعية وتحدد هيكلها الإداري وأهدافها وآليات عملها بشكل
+                        مفصل.</p>
+                    <div class="pdf-card-meta">
+                        <span class="pdf-meta-item"><i class="fas fa-file"></i> 21 صفحة</span>
+                        <span class="pdf-meta-item"><i class="fas fa-tag"></i> لائحة تأسيسية</span>
+                    </div>
+                    <div class="pdf-actions">
+                        <a href="assets/docs/اللائحة الاساسية.pdf" target="_blank" class="pdf-btn pdf-btn-secondary">
+                            <i class="fas fa-external-link-alt"></i> قراءة اللائحة كاملة
+                        </a>
+                        <a href="assets/docs/اللائحة الاساسية.pdf" download class="pdf-btn pdf-btn-primary">
+                            <i class="fas fa-download"></i> تحميل
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="assets/images/logoToUse.png" alt="Logo">
+                    <p>جمعية أهلية خيرية مسجلة في وزارة الموارد البشرية والتنمية الاجتماعية برقم 05292، نعمل على خدمة
+                        أبناء مجتمعنا الكريم من خلال برامج ومبادرات هادفة تحقق التنمية المستدامة وتعكس قيم ديننا الحنيف
+                        ومبادئ مجتمعنا السعودي</p>
+                </div>
+                <div class="footer-contact">
+                    <h4>للتواصل</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> المنطقه الشرقية - المملكة العربية السعودية</p>
+                    <p><i class="fas fa-envelope"></i> info@ataasociety.org</p>
+                    <p><i class="fas fa-phone"></i> 0554829996</p>
+                    <p><i class="fas fa-phone"></i> 0532189994</p>
+                </div>
+                <div class="footer-links">
+                    <h4>روابط سريعة</h4>
+                    <ul>
+                        <li><a href="index.html#vision">من نحن</a></li>
+                        <li><a href="regulations.html">اللوائح والانظمة</a></li>
+                        <li><a href="index.html#goals">أهدافنا</a></li>
+                        <li><a href="donate.html">تبرع</a></li>
+                    </ul>
+                    <div class="footer-social">
+                        <a href="https://www.facebook.com/AtaaSociety/" target="_blank"><i
+                                class="fab fa-facebook-f"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>سياسة الخصوصية | الأحكام والشروط</p>
+                <p>جمعية عطاء للمبادرات المجتمعية 2026 © جميع الحقوق محفوظة &nbsp;|&nbsp; تم التطوير عن طريق <strong>CG
+                        Agency</strong></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
